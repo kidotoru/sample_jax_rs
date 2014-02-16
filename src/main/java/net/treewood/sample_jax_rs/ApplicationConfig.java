@@ -20,6 +20,21 @@ public class ApplicationConfig extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
         addRestResourceClasses(resources);
+        
+try {
+            Class jsonProvider = Class.forName("org.glassfish.jersey.jackson.JacksonFeature");
+            resources.add(jsonProvider);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(getClass().getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        try {
+            Class jspProvider = Class.forName("org.glassfish.jersey.server.mvc.jsp.JspMvcFeature");
+            resources.add(jspProvider);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(getClass().getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        
         return resources;
     }
 
@@ -31,6 +46,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(net.treewood.sample_jax_rs.GenericResource.class);
+        resources.add(net.treewood.sample_jax_rs.SampleResource.class);
     }
     
 }
