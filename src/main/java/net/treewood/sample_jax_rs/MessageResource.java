@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.treewood.sample_jax_rs;
 
 import java.util.ArrayList;
@@ -17,17 +16,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.glassfish.jersey.server.mvc.Viewable;
-
 
 /**
  * REST Web Service
  *
  * @author taatan
  */
-@Path("hello")
-public class GenericResource {
+@Path("message")
+public class MessageResource {
 
     @Context
     private UriInfo context;
@@ -35,18 +34,20 @@ public class GenericResource {
     /**
      * Creates a new instance of GenericResource
      */
-    public GenericResource() {
+    public MessageResource() {
     }
 
     /**
-     * Retrieves representation of an instance of net.treewood.sample_jax_rs.GenericResource
+     * Retrieves representation of an instance of
+     * net.treewood.sample_jax_rs.GenericResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
-     @Path("list")
+    @Path("list")
     @Produces(MediaType.TEXT_HTML)
-    public Viewable  getText() {
-        List<String> messages = new ArrayList<String>();
+    public Viewable getJSP() {
+        List<String> messages = new ArrayList<>();
         messages.add("message1");
         messages.add("message2");
         messages.add("message3");
@@ -54,13 +55,29 @@ public class GenericResource {
         return new Viewable("/list.jsp", messages);
     }
 
-    /**
-     * PUT method for updating or creating an instance of GenericResource
-     * @param content representation for the resource
-     * @return an HTTP response with content of the updated or created resource.
-     */
-    @PUT
-    @Consumes("text/plain")
-    public void putText(String content) {
+    @GET
+    @Path("json")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<String> getJSON() {
+        List<String> messages = new ArrayList<>();
+        messages.add("message1");
+        messages.add("message2");
+        messages.add("message3");
+
+        return messages;
     }
+
+    @GET
+    @Path("xml")
+    @Produces("application/xml")
+    public CustomerBean getXML() {
+        CustomerBean c = new CustomerBean();
+        c.address = "東京";
+        c.name = "山田";
+
+        return c;
+    }
+
+
+
 }
