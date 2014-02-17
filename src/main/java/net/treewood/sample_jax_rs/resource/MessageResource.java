@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.treewood.sample_jax_rs.resource;
 
 import net.treewood.sample_jax_rs.bean.CustomerBean;
@@ -41,6 +36,8 @@ public class MessageResource {
         messages.add("message1");
         messages.add("message2");
         messages.add("message3");
+        
+        System.out.println(context.getPath());
 
         return new Viewable("/list.jsp", messages);
     }
