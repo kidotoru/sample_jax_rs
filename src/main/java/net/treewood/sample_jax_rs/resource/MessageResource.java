@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
+import net.treewood.sample_jax_rs.bean.CustomerListBean;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
@@ -43,25 +44,39 @@ public class MessageResource {
     }
 
     @GET
-    @Path("json")
+    @Path("jsonresponse")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<String> getJSON() {
-        List<String> messages = new ArrayList<>();
-        messages.add("message1");
-        messages.add("message2");
-        messages.add("message3");
-
-        return messages;
-    }
-
-    @GET
-    @Path("xml")
-    @Produces("application/xml")
-    public CustomerBean getXML() {
+    public CustomerListBean getJSON() {
+        CustomerListBean list = new CustomerListBean();
+        
         CustomerBean c = new CustomerBean();
         c.address = "東京";
         c.name = "山田";
 
-        return c;
+        list.customerlist.add(c);
+        list.customerlist.add(c);
+        list.customerlist.add(c);
+        
+        
+        return list;
+    }
+
+    @GET
+    @Path("xmlresponse")
+    @Produces("application/xml")
+    public CustomerListBean getXML() {
+        
+        CustomerListBean list = new CustomerListBean();
+        
+        CustomerBean c = new CustomerBean();
+        c.address = "東京";
+        c.name = "山田";
+
+        list.customerlist.add(c);
+        list.customerlist.add(c);
+        list.customerlist.add(c);
+        
+        
+        return list;
     }
 }
