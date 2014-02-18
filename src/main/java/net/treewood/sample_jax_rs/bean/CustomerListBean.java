@@ -8,6 +8,7 @@ package net.treewood.sample_jax_rs.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -16,10 +17,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name="customerlist")
 public class CustomerListBean {
-    public List<CustomerBean> customerlist;
+    public List<CustomerBean> customer;
     
     public CustomerListBean(){
-        this.customerlist = new ArrayList<>();
+        this.customer = new ArrayList<>();
     }
             
 

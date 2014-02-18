@@ -53,9 +53,9 @@ public class MessageResource {
         c.address = "東京";
         c.name = "山田";
 
-        list.customerlist.add(c);
-        list.customerlist.add(c);
-        list.customerlist.add(c);
+        list.customer.add(c);
+        list.customer.add(c);
+        list.customer.add(c);
         
         
         return list;
@@ -72,9 +72,9 @@ public class MessageResource {
         c.address = "東京";
         c.name = "山田";
 
-        list.customerlist.add(c);
-        list.customerlist.add(c);
-        list.customerlist.add(c);
+        list.customer.add(c);
+        list.customer.add(c);
+        list.customer.add(c);
         
         
         return list;
