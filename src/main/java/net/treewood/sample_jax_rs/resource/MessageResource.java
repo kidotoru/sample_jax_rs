@@ -3,6 +3,7 @@ package net.treewood.sample_jax_rs.resource;
 import net.treewood.sample_jax_rs.bean.CustomerBean;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -14,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
 import net.treewood.sample_jax_rs.bean.CustomerListBean;
+import net.treewood.sample_jax_rs.service.MessageService;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
@@ -23,6 +25,9 @@ import org.glassfish.jersey.server.mvc.Viewable;
 @Path("message")
 public class MessageResource {
 
+    @Inject
+    private MessageService messageService;
+    
     @Context
     private UriInfo context;
 
@@ -37,9 +42,7 @@ public class MessageResource {
         messages.add("message1");
         messages.add("message2");
         messages.add("message3");
-        
         System.out.println(context.getPath());
-
         return new Viewable("/list.jsp", messages);
     }
 
@@ -47,36 +50,14 @@ public class MessageResource {
     @Path("jsonresponse")
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerListBean getJSON() {
-        CustomerListBean list = new CustomerListBean();
-        
-        CustomerBean c = new CustomerBean();
-        c.address = "東京";
-        c.name = "山田";
 
-        list.customer.add(c);
-        list.customer.add(c);
-        list.customer.add(c);
-        
-        
-        return list;
+        return this.messageService.getCustomer();
     }
 
     @GET
     @Path("xmlresponse")
     @Produces("application/xml")
     public CustomerListBean getXML() {
-        
-        CustomerListBean list = new CustomerListBean();
-        
-        CustomerBean c = new CustomerBean();
-        c.address = "東京";
-        c.name = "山田";
-
-        list.customer.add(c);
-        list.customer.add(c);
-        list.customer.add(c);
-        
-        
-        return list;
+        return this.messageService.getCustomer();
     }
 }
