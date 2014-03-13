@@ -45,7 +45,6 @@ public class MessageResource {
     @Path("jsonresponse")
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerListBean getJSON() {
-
         return this.messageService.getCustomer();
     }
 
