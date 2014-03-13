@@ -15,6 +15,4 @@ public class CustomerListBean {
     public CustomerListBean(){
         this.customer = new ArrayList<>();
     }
-            
-
 }
