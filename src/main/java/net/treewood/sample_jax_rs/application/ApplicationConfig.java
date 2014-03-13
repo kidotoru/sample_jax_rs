@@ -27,9 +27,6 @@ public class ApplicationConfig extends Application {
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
-
-        
         resources.add(net.treewood.sample_jax_rs.resource.MessageResource.class);
     }
-
 }
